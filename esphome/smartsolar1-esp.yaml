@@ -2,11 +2,12 @@ substitutions:
   #############################
   # comomon substitution #####
   ############################  
-  name: smartsolar1-esp
+  name: "smartsolar1-esp"
   esphome_name: "SmartSolar1-Esp"
-  friendly_name: "smartsolar1esp"
+  # nonm affiché dans l'interface #
+  friendly_name: "Smart Solar1 Mppt Esp"
   external_components_source: github://KinDR007/VictronMPPT-ESPHOME@main
-  sensor_prefix: "smartsolar1"
+  sensor_prefix: ""
   device_description: "Read data from SmartSolar Victron MPPT"
   time_timezone: "Europe/Paris"
   projectname: "Pat.SmartSolar1 Virtual Meter"
