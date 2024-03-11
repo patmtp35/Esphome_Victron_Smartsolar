@@ -60,7 +60,7 @@ logger:
   level: ${log_level}  # not that logging need memory, so in production mode use "WARN"
   baud_rate: ${baud_ratelog}  # use 0 to disable serial UART port logging.
   esp8266_store_log_strings_in_flash: false
-
+  
 # Native API Component: https://esphome.io/components/api.html
 api:
   encryption:

@@ -1,3 +1,10 @@
+##################################
+# V2.0
+##################################
+#changelog:
+# V2 Clean Code
+# V1 test
+####################  
 substitutions:
   #############################
   # comomon substitution #####
@@ -6,6 +13,7 @@ substitutions:
   esphome_name: "SmartSolar1-Esp"
   # nonm affiché dans l'interface #
   friendly_name: "Smart Solar1 Mppt Esp"
+  #######################################
   external_components_source: github://KinDR007/VictronMPPT-ESPHOME@main
   sensor_prefix: ""
   device_description: "Read data from SmartSolar Victron MPPT"

@@ -19,3 +19,5 @@ discution :
 https://community.home-assistant.io/t/victron-energy-vedirect-bluetooth/20726/164?page=3
 
 Juste a simple workaround to connect SamrtSolar and HA
+
+Change log => yaml
