@@ -1,6 +1,7 @@
 #####################################"###
 # Fichier Communs a tout les esphomes
 # bien renseigner la partie subsitution
+#V1.7 modif time
 #V1.6 modif name
 #V1.5 modif logger
 #V1.4 ota correction
@@ -20,7 +21,6 @@ esphome:
     name: ${projectname}
     version: ${appversion}
 
-    
 # WiFi Component: https://esphome.io/components/wifi.html
 ## ---------------------------------------------------
 ## WIFI Settings 2 wifis
@@ -60,7 +60,10 @@ logger:
   level: ${log_level}  # not that logging need memory, so in production mode use "WARN"
   baud_rate: ${baud_ratelog}  # use 0 to disable serial UART port logging.
   esp8266_store_log_strings_in_flash: false
-
+    # Quieten the warnings about delays
+  logs:
+    tdisplays3.display: ERROR
+    component: ERROR
 # Native API Component: https://esphome.io/components/api.html
 api:
   encryption:
@@ -125,8 +128,8 @@ web_server:
 
 # Time: https://esphome.io/components/time.html
 time:
-  - platform: homeassistant
-    id: homeassistant_time
+  - platform: ${time_platform}
+    id: ${time_id}
     timezone:  ${time_timezone}
 
 # Status Binary Sensor: https://esphome.io/components/binary_sensor/status.html

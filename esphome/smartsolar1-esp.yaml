@@ -1,16 +1,26 @@
+##################################
+# V2.1
+##################################
+#changelog:
+# V2.1  adaptation common file
+# V2 Clean Code
+# V1 test
+####################  
 substitutions:
   #############################
   # comomon substitution #####
   ############################  
-  name: smartsolar1-esp
+  name: "smartsolar1-esp"
   esphome_name: "SmartSolar1-Esp"
-  friendly_name: "smartsolar1esp"
+  # nonm affiché dans l'interface #
+  friendly_name: "Smart Solar1 Mppt Esp"
+  #######################################
   external_components_source: github://KinDR007/VictronMPPT-ESPHOME@main
-  sensor_prefix: "smartsolar1"
+  sensor_prefix: ""
   device_description: "Read data from SmartSolar Victron MPPT"
   time_timezone: "Europe/Paris"
   projectname: "Pat.SmartSolar1 Virtual Meter"
-  appversion: 2.0.0
+  appversion: 2.1.0
   log_level: "INFO"
   baud_ratelog: "0"
   api_encryption_key: !secret smartsolar1key
@@ -19,7 +29,9 @@ substitutions:
   adress_ip: !secret ip_smartsolar1
   gateway_ip: !secret ip_gateway
   dns_ip: !secret ip_dns
-
+  time_id: ha_time
+  time_platform: homeassistant
+  
 ###############################
 ### definition de la carte ESP
 ###############################  
