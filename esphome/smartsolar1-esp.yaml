@@ -1,0 +1,128 @@
+##################################
+# V2.1
+##################################
+#changelog:
+# V2.1  adaptation common file
+# V2 Clean Code
+# V1 test
+####################  
+substitutions:
+  #############################
+  # comomon substitution #####
+  ############################  
+  name: "smartsolar1-esp"
+  esphome_name: "SmartSolar1-Esp"
+  # nonm affiché dans l'interface #
+  friendly_name: "Smart Solar1 Mppt Esp"
+  #######################################
+  external_components_source: github://KinDR007/VictronMPPT-ESPHOME@main
+  sensor_prefix: ""
+  device_description: "Read data from SmartSolar Victron MPPT"
+  time_timezone: "Europe/Paris"
+  projectname: "Pat.SmartSolar1 Virtual Meter"
+  appversion: 2.1.0
+  log_level: "INFO"
+  baud_ratelog: "0"
+  api_encryption_key: !secret smartsolar1key
+  ota_pswd: !secret ota_pswd
+  ap_pwd: !secret ota_pswd
+  adress_ip: !secret ip_smartsolar1
+  gateway_ip: !secret ip_gateway
+  dns_ip: !secret ip_dns
+  time_id: ha_time
+  time_platform: homeassistant
+  
+###############################
+### definition de la carte ESP
+###############################  
+
+esp8266:
+  board: d1_mini
+
+###################################
+### inclusion de la partie commune 
+###################################
+
+<<: !include .common.yaml
+
+##########################
+##  composants externes ##
+##########################
+
+external_components:
+  - source: ${external_components_source}
+    refresh: 0s
+
+#mqtt:
+#  broker: !secret mqtt_host
+#  username: !secret mqtt_username
+#  password: !secret mqtt_password
+#  id: mqtt_client
+
+uart:
+  id: uart_0
+  tx_pin: D8  # Not connected! The communication is read-only
+  rx_pin: D7  # Connect this this GPIO and GND to the MPPT charger
+  baud_rate: 19200
+  rx_buffer_size: 256
+
+victron:
+  uart_id: uart_0
+  id: victron0
+  throttle: 10s
+
+sensor:
+  - platform: victron
+    victron_id: victron0
+    max_power_yesterday:
+      name: "${sensor_prefix} max power yesterday"
+    max_power_today:
+      name: "${sensor_prefix} max power today"
+    yield_total:
+      name: "${sensor_prefix} yield total"
+    yield_yesterday:
+      name: "${sensor_prefix} yield yesterday"
+    yield_today:
+      name: "${sensor_prefix} yield today"
+    panel_voltage:
+      name: "${sensor_prefix} panel voltage"
+    panel_power:
+      name: "${sensor_prefix} panel power"
+    battery_current:
+      name: "${sensor_prefix} panel current"
+    battery_voltage:
+      name: "${sensor_prefix} battery voltage"
+    day_number:
+      name: "${sensor_prefix} day number"
+    charging_mode_id:
+      name: "${sensor_prefix} charging mode id"
+    error_code:
+      name: "${sensor_prefix} error code"
+    tracking_mode_id:
+      name: "${sensor_prefix} tracking mode id"
+    load_current:
+      name: "${sensor_prefix} load current"
+
+text_sensor:
+  - platform: victron
+    victron_id: victron0
+    charging_mode:
+      name: "${sensor_prefix} charging mode"
+    error:
+      name: "${sensor_prefix} error"
+    tracking_mode:
+      name: "${sensor_prefix} tracking mode"
+    firmware_version:
+      name: "${sensor_prefix} firmware version"
+    device_type:
+      name: "${sensor_prefix} device type"
+    serial_number:
+      name: "${sensor_prefix} serial number"
+
+binary_sensor:
+  - platform: victron
+    victron_id: victron0
+    load_state:
+      name: "${sensor_prefix} load state"
+    relay_state:
+      name: "${sensor_prefix} relay state"
