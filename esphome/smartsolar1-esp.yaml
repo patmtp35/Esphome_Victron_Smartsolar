@@ -22,6 +22,7 @@ substitutions:
   projectname: "Pat.SmartSolar1 Virtual Meter"
   appversion: 2.1.0
   log_level: "INFO"
+  #for SmartSolar 100/30 Rev 3 => Log_level: "VERBOSE"
   baud_ratelog: "0"
   api_encryption_key: !secret smartsolar1key
   ota_pswd: !secret ota_pswd
